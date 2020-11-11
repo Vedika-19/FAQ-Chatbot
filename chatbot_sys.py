@@ -3,11 +3,9 @@ import pandas as pd
 import pickle
 import tensorflow as tf
 import tensorflow_hub as hub
-# from chatterbot import ChatBot
-# from chatterbot.trainers import ChatterBotCorpusTrainer
 
  
-#dataset preparation
+# Uncomment this when running the code (dataset) for the first time
 # import numpy as np
 # import nltk
 # import re
@@ -15,29 +13,25 @@ import tensorflow_hub as hub
 # import pickle
 # import tensorflow as tf
 # import tensorflow_hub as hub
-# dataset = pd.read_csv("R:\CHATBOT\menstruation.csv")
+# dataset = pd.read_csv("data.csv")
 # module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
 # model = hub.load(module_url)
 # def embed(input):
 #   return model([input])
 # dataset['Question_Vector'] = dataset.Questions.map(embed)
 # dataset['Question_Vector'] = dataset.Question_Vector.map(np.array)
-# pickle.dump(dataset, open('dataset.pkl', 'wb'))
+# pickle.dump(dataset, open('data.pkl', 'wb'))
   
         
 class DialogueManager(object):
     def __init__(self):
  
-        #self.model = tf.saved_model.load("../data/tmp/mobilenet/1/")
         self.model = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
         self.dataset = pickle.load(open('dataset.pkl', mode='rb'))
         self.questions = self.dataset.Questions
         self.QUESTION_VECTORS = np.array(self.dataset.Question_Vector)
-        self.COSINE_THRESHOLD = 0.5
+        self.COSINE_THRESHOLD = 0.5       
         
-        # self.chitchat_bot = ChatBot("Chatterbot")       
-        # trainer = ChatterBotCorpusTrainer(self.chitchat_bot)
-        # trainer.train("chatterbot.corpus.english")
  
          
         
@@ -70,7 +64,7 @@ class DialogueManager(object):
             answer = self.dataset.Answers[most_relevant_row[2]]
         else:
             # answer = self.chitchat_bot.get_response(question)
-            answer = 'Arrey BC dhang se likh'
+            answer = 'I\'m sorry I can\'t undestand your question.'
         return answer
       
          
