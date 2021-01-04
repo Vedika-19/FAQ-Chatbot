@@ -64,6 +64,7 @@ class DialogueManager(object):
             answer = self.dataset.Answers[most_relevant_row[2]]
         else:
             # answer = self.chitchat_bot.get_response(question)
+            answer = 'I\'m sorry I can\'t undestand your question.'
             
       
          
