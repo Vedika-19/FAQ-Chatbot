@@ -65,6 +65,6 @@ class DialogueManager(object):
         else:
             # answer = self.chitchat_bot.get_response(question)
             answer = 'I\'m sorry I can\'t undestand your question.'
-            
+       return answer     
       
          
